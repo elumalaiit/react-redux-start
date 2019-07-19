@@ -1,0 +1,1 @@
+export const HELLO_TITLE = 'HELLO_TITLE';
