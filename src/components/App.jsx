@@ -1,31 +1,16 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import store from '../store'
-import * as action from '../actions'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { displayTitle } from '../actions'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      title: 'Hello World'
-    }
-  }
+function App() {
+  const title = useSelector(state => state.rootState.title);
+  const dispatch = useDispatch();
 
-  componentDidMount() {
-    this.props.dispatch(action.displayHello("Hello Super Hero!"));
-  }
-  
-  render() {
-    const { data } = this.props
-    return (
-      <div>{data.title}</div>
-    );
-  }
+  useEffect(() => {
+    dispatch(displayTitle("Hello Super Hero!"));
+  }, []);
+
+  return <div>{title}</div>;
 }
 
-const mapStateToProps = ({ rootState }) => {
-  return { data: rootState }
-}
-
-export default connect(mapStateToProps, null)(App)
-
+export default App;
