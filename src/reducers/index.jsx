@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux'
-import rootReducer from './rootReducer'
+import { combineReducers } from "redux";
+import rootReducer from "./rootReducer";
 
 const reducers = combineReducers({
   rootState: rootReducer

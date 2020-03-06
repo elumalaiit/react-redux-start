@@ -1,16 +1,16 @@
-import { TITLE } from '../constants/action-types'
+import { TITLE } from "../constants/action-types";
 
 const initialState = {
-  title: ''
-}
+  title: "Hello!"
+};
 
 const rootReducer = (state = initialState, action) => {
-  switch(action.type) {
-    case 'TITLE':
-      return {...state, title: action.payload }
+  switch (action.type) {
+    case "TITLE":
+      return { ...state, title: action.payload };
     default:
       return state;
   }
-}
+};
 
 export default rootReducer;
