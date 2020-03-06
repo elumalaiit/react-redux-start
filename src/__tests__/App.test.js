@@ -1,7 +1,7 @@
 import React from "react"
 import { Provider } from 'react-redux'
 import Adapter from 'enzyme-adapter-react-16'
-import { shallow, configure } from 'enzyme'
+import { shallow, configure, mount } from 'enzyme'
 import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import App from "../components/App"
@@ -21,6 +21,17 @@ describe('App', () => {
             </Provider>,
         )
         expect(wrapper).toMatchSnapshot()
+    })
+
+    it('Should render startup component', () => {
+        const store = mockstore({ rootState: { title: 'Hello!' } })
+        const wrapper = mount(
+            <Provider store={store}>
+                <App />
+            </Provider>,
+        )
+        expect(wrapper.find('.title').length).toEqual(1)
+        expect(wrapper.find('.title').text()).toEqual('Hello!')
     })
 
     it('Should have a initial state', () => {
