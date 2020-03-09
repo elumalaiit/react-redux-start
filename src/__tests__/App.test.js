@@ -13,16 +13,6 @@ configure({ adapter: new Adapter() })
 const mockstore = configureMockStore([thunk])
 
 describe('App', () => {
-    it('Renders without crashing', () => {
-        const store = mockstore({ title: 'Hello!' })
-        const wrapper = shallow(
-            <Provider store={store}>
-                <App />
-            </Provider>,
-        )
-        expect(wrapper).toMatchSnapshot()
-    })
-
     it('Should render startup component', () => {
         const store = mockstore({ rootState: { title: 'Hello!' } })
         const wrapper = mount(
