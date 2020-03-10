@@ -7,6 +7,7 @@ import configureMockStore from 'redux-mock-store'
 import App from "../components/App"
 import reducer from '../reducers/rootReducer'
 import * as actions from '../actions/index'
+import toJson from 'enzyme-to-json';
 
 configure({ adapter: new Adapter() })
 
@@ -15,13 +16,20 @@ const mockstore = configureMockStore([thunk])
 describe('App', () => {
     it('Should render startup component', () => {
         const store = mockstore({ rootState: { title: 'Hello!' } })
-        const wrapper = mount(
-            <Provider store={store}>
-                <App />
-            </Provider>,
+        const wrapper = mount(<Provider store={store}>
+            <App />
+        </Provider>,
         )
         expect(wrapper.find('.title').length).toEqual(1)
         expect(wrapper.find('.title').text()).toEqual('Hello!')
+    })
+
+    it('Renders app component!', () => {
+        const store = mockstore({ rootState: { title: 'Hello!' } })
+        const wrapper = shallow(<Provider store={store}>
+            <App />
+        </Provider>)
+        expect(toJson(wrapper)).toMatchSnapshot()
     })
 
     it('Should have a initial state', () => {
